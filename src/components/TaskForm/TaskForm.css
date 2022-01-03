@@ -1,0 +1,14 @@
+form {
+      padding: 1rem;
+
+      background: rgb(236, 236, 236);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+}
+
+.form-control {
+      margin: 10px 0;
+}
