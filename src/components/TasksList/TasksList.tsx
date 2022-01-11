@@ -6,7 +6,7 @@ export const TasksList = (props: any) => {
       
       
       return (
-            <div>
+            <div className="tasks-list">
                   <h2>TasksList</h2>
                   <div className="tasks-container">
                         {
@@ -15,9 +15,9 @@ export const TasksList = (props: any) => {
                                           <h3 className="card__title" >{task.title}</h3>
                                           <p className="card__description">{task.description}</p>
                                           <span 
-                                                className={`card__status ${task.done ? 'success' : 'pending'}`}
+                                                className={`card__status ${task.done == 'true' ? 'success' : 'pending'}`}
                                           >
-                                                { task.done ? 'Hecha' : 'Pendiente'}
+                                                { task.done == 'true' ? 'Hecha' : 'Pendiente'}
                                           </span>
                                     </div>
                               ))

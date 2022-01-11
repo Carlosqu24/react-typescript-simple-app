@@ -22,6 +22,8 @@ export const TaskForm = (props: any) => {
 
       return (
             <form onSubmit={(e) => handleSubmit(e)}>
+                  <h2>Add Task</h2>
+
                   <input 
                         type="text"
                         name="title"
@@ -38,7 +40,16 @@ export const TaskForm = (props: any) => {
                         onChange={(e) => handleInputChange(e)}
                   />
 
-                  <button type="submit" >Save Task</button>
+                  <select 
+                        name="done"
+                        className="form-control"
+                        onChange={handleInputChange}      
+                  >
+                        <option value={`${true}`}>Hecha</option>
+                        <option value={`${false}`}>Pendiente</option>
+                  </select>
+
+                  <button className="form-control" type="submit" >Save Task</button>
             </form>
       )
 }
