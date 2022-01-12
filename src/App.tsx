@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { ITask } from './interfaces/Task';
+
 import './App.css';
 
 import { TaskForm } from './components/TaskForm/TaskForm';
@@ -7,46 +9,46 @@ import { TasksList } from './components/TasksList/TasksList';
 
 const initialState = [
   {
-    id: 1,
+    id: new Date().getTime(),
     title: 'Primera tarea',
     description: 'Primera descripción',
     done: true
   },
   {
-    id: 2,
+    id: new Date().getTime(),
     title: 'Segunda tarea',
     description: 'Segunda descripción',
     done: false
   },
   {
-    id: 3,
+    id: new Date().getTime(),
     title: 'Tercera tarea',
     description: 'Tercera descripción',
     done: false
   }
-]
-
-interface ITask {
-  id: number
-  title: string,
-  description: string,
-  done: boolean
-}
+];
 
 function App(): JSX.Element {
   const [tasksList, setTasksList] = useState<ITask[]>(initialState);
 
   const addTask = (task: ITask) => {
-    // const newTasks: ITask[] = [ ...tasksList, { ...task, created: 123}] Da error porque el objeto no coincide con el que se le está pasando
+    setTasksList([ ...tasksList, task ]);
+  };
 
-    setTasksList([ ...tasksList, task ])
-  }
+  const deleteTask = (id: number): void => {
+    const mappedTaskList = tasksList.filter(task => task.id !== id);
+
+    setTasksList(mappedTaskList);
+  };
 
   return (
     <div className="container">
         <div className="App">
           <TaskForm addTask={addTask} />
-          <TasksList tasks={tasksList} />
+          <TasksList 
+            tasks={tasksList}
+            deleteTask={deleteTask} 
+          />
         </div>
     </div>
   );
