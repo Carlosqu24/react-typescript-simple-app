@@ -1,23 +1,39 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
+
+import { ITask } from '../../interfaces/Task';
+import { CustomEventTarget } from '../../interfaces/CustomEventTarget';
 
 import './TaskForm.css'
 
-type FormElement = React.FormEvent<HTMLFormElement>;
+// type FormElement = React.FormEvent<HTMLFormElement> | React.FormEvent<EventTarget>;
+type HandleInputChange = CustomEventTarget
 
-export const TaskForm = (props: any) => {
-      const [form, setForm] = useState<object>({});
+interface Props {
+      addTask: (task: ITask) => void
+};
 
-      const handleInputChange = (e: any) => {
+const initialState = {
+      id: new Date().getTime(),
+      title: '',
+      description: '',
+      done: false
+};
+
+export const TaskForm = ({ addTask }: Props) => {
+      const [form, setForm] = useState<ITask>(initialState);
+
+      const handleInputChange = (e: CustomEventTarget): void => {
+      
             setForm({ 
                   ...form, 
                   [e.target.name]: e.target.value 
             });
       };
 
-      const handleSubmit = (e: FormElement) => {
+      const handleSubmit = (e: FormEvent): void => {
             e.preventDefault();
 
-            props.addTask(form)
+            addTask(form);
       }
 
       return (
@@ -43,7 +59,7 @@ export const TaskForm = (props: any) => {
                   <select 
                         name="done"
                         className="form-control"
-                        onChange={handleInputChange}      
+                        onChange={handleInputChange}     
                   >
                         <option value={`${true}`}>Hecha</option>
                         <option value={`${false}`}>Pendiente</option>
