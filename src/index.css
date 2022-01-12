@@ -21,3 +21,9 @@ button {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.329);
 }
+
+button,
+select {
+  background: rgb(53, 53, 53);
+  color: #fff;
+}
