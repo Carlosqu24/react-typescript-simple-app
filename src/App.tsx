@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { v4 } from 'uuid';
 import { ITask } from './interfaces/Task';
 
 import './App.css';
@@ -9,21 +9,21 @@ import { TasksList } from './components/TasksList/TasksList';
 
 const initialState = [
   {
-    id: new Date().getTime(),
-    title: 'Primera tarea',
-    description: 'Primera descripción',
+    id: v4(),
+    title: 'First Task',
+    description: 'First Description',
     done: true
   },
   {
-    id: new Date().getTime(),
-    title: 'Segunda tarea',
-    description: 'Segunda descripción',
+    id: v4(),
+    title: 'Second Task',
+    description: 'Second Description',
     done: false
   },
   {
-    id: new Date().getTime(),
-    title: 'Tercera tarea',
-    description: 'Tercera descripción',
+    id: v4(),
+    title: 'Third Task',
+    description: 'Third Description',
     done: false
   }
 ];
@@ -35,7 +35,7 @@ function App(): JSX.Element {
     setTasksList([ ...tasksList, task ]);
   };
 
-  const deleteTask = (id: number): void => {
+  const deleteTask = (id: string): void => {
     const mappedTaskList = tasksList.filter(task => task.id !== id);
 
     setTasksList(mappedTaskList);

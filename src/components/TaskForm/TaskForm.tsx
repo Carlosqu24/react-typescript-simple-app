@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react'
-
+import { v4 } from 'uuid';
 import { ITask } from '../../interfaces/Task';
 import { CustomEventTarget } from '../../interfaces/CustomEventTarget';
 
@@ -13,7 +13,7 @@ interface Props {
 };
 
 const initialState = {
-      id: new Date().getTime(),
+      id: v4(),
       title: '',
       description: '',
       done: false
@@ -32,6 +32,8 @@ export const TaskForm = ({ addTask }: Props) => {
 
       const handleSubmit = (e: FormEvent): void => {
             e.preventDefault();
+
+            setForm({ ...form, id: v4() });
 
             addTask(form);
       }
@@ -61,8 +63,8 @@ export const TaskForm = ({ addTask }: Props) => {
                         className="form-control"
                         onChange={handleInputChange}     
                   >
-                        <option value={`${true}`}>Hecha</option>
-                        <option value={`${false}`}>Pendiente</option>
+                        <option value={'true'}>Done</option>
+                        <option value={'false'}>Pending</option>
                   </select>
 
                   <button className="form-control" type="submit" >Save Task</button>

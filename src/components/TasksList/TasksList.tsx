@@ -7,7 +7,7 @@ import './TaskList.css'
 
 interface Props {
       tasks: ITask[],
-      deleteTask: (id: number) => void
+      deleteTask: (id: string) => void
 };
 
 export const TasksList = ({ tasks, deleteTask }: Props) => {
@@ -24,6 +24,7 @@ export const TasksList = ({ tasks, deleteTask }: Props) => {
                                           title={task.title}
                                           description={task.description}
                                           done={task.done}
+                                          deleteTask={deleteTask}
                                     />
                               ))
                         }
