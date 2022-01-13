@@ -11,6 +11,10 @@
       justify-content: center;
 }
 
+.card * {
+      margin-bottom: 5px;
+}
+
 .card__title {
       font-size: 22px;
       font-weight: 600;
@@ -23,12 +27,17 @@
 
 .card__status {
       padding: 8px;
+      font-size: 15px;
 }
 
-.card__status.success {
+.card__status--success {
       background: rgba(20, 136, 20, 0.233);
 }
 
-.card__status.pending {
+.card__status--pending {
       background: rgba(151, 136, 86, 0.301);
+}
+
+.card__delete-task {
+      font-size: 15px;
 }
